@@ -4,11 +4,13 @@ import PropTypes from 'prop-types';
 
 // Components
 import StyledNavBar from './NavBar/NavBar';
+import StyledHomePage from './Pages/HomePage/HomePage';
 
 function App({ className }) {
   return (
     <div className={className}>
       <StyledNavBar />
+      <StyledHomePage />
     </div>
   );
 }
