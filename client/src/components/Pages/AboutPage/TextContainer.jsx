@@ -35,6 +35,9 @@ const StyledTextContainer = styled(TextContainer)`
   display: flex;
   flex-direction: column;
   text-align: center;
+  @media (min-width: 900px) {
+    text-align: start;
+  }
   gap: 20px;
   max-width: 550px;
 `;
