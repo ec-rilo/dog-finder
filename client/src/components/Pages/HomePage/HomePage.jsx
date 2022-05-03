@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 // Components
+import StyledAboutPage from '../AboutPage/AboutPage';
+
 import StyledSearchBanner from './SearchBanner/SearchBanner';
 import StyledContainer from '../../Container';
 import StyledDecoBanner1 from '../Decorative/DecoBanner1';
@@ -18,6 +20,7 @@ function HomePage({ className }) {
         <StyledDecoBanner1 />
       </StyledContainer>
       <StyledDecoLine />
+      <StyledAboutPage />
     </div>
   );
 }
