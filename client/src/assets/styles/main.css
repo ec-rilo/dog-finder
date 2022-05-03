@@ -1,0 +1,33 @@
+@font-face {
+  src: url('../fonts/Inter/static/Inter-Regular.ttf');
+  font-family: 'Inter-Regular';
+}
+
+@font-face {
+  src: url('../fonts/Inter/static/Inter-Bold.ttf');
+  font-family: 'Inter-Bold';
+}
+
+@font-face {
+  src: url('../fonts/Inter/static/Inter-Black.ttf');
+  font-family: 'Inter-Black';
+}
+
+:root {
+  /* ----------------- Colors ----------------- */
+  --clr-smalt: #003494;
+  --clr-white: #ffffff;
+  --clr-black: #000000;
+  --clr-soft-peach: #EFEEF1;
+  --clr-davy-grey: #575757;
+  --clr-strawberry: #FF1A40;
+
+  /* ----------------- Fonts ----------------- */
+  --fnt-regular: 'Inter-Regular';
+  --fnt-bold: 'Inter-Bold';
+  --fnt-dark: 'Inter-Black'
+}
+
+body {
+  font-family: var(--fnt-regular);
+}
