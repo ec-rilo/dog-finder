@@ -9,5 +9,6 @@ module.exports = merge(common, {
     static: path.resolve(__dirname, './client/dist'),
     port: 9000,
     hot: true,
+    historyApiFallback: true,
   },
 });
