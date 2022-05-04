@@ -6,6 +6,7 @@ const StyledContainer = styled.div`
   margin: auto;
   padding: 0 10px;
   ${({ noPadding }) => noPadding && 'padding: 0;'}
+  ${({ noWidth }) => noWidth && 'max-width: none;'}
 `;
 
 export default StyledContainer;
