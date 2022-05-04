@@ -37,7 +37,7 @@ function SearchBar({ className, setDogNames }) {
   const [text, setText] = useState('');
 
   useEffect(() => {
-    if (text.length > 5 && text.length < 40) {
+    if (text.length > 2 && text.length < 40) {
       apiFunctions.getDogBreeds(text)
         .then((dogData) => {
           if (dogData.length > 0) {
