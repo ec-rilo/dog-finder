@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 // Assets
 import MagnifyIcon from './MagnifyIcon';
-import apiFunctions from './apiFunctions';
+import apiFunctions from '../../../apiFunctions';
 
 const StyledInput = styled.input`
   box-sizing: border-box;
