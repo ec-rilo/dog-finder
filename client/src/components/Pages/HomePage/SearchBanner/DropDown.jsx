@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const cellSize = 15;
 
@@ -32,7 +33,11 @@ function DropDown({ className, dogNames }) {
       <StyledTitle>Search Results:</StyledTitle>
       <ul>
         {dogNames.map((dog) => (
-          <StyledCell key={dog.id}>{dog.name}</StyledCell>
+          <Link key={dog.id} to={`/breeds/${dog.name}`} style={{ textDecoration: 'none' }}>
+            <StyledCell>
+              {dog.name}
+            </StyledCell>
+          </Link>
         ))}
       </ul>
     </div>
