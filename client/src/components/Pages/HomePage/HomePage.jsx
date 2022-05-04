@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 
 // Components
 import StyledAboutPage from '../AboutPage/AboutPage';
-import StyledFooter from '../../Footer/Footer';
-
 import StyledSearchBanner from './SearchBanner/SearchBanner';
 import StyledContainer from '../../Container';
 import StyledDecoBanner1 from '../Decorative/DecoBanner1';
@@ -22,7 +20,6 @@ function HomePage({ className }) {
       </StyledContainer>
       <StyledDecoLine />
       <StyledAboutPage />
-      <StyledFooter />
     </div>
   );
 }
