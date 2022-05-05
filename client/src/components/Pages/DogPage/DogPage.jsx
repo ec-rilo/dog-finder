@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 // Assets
 import apiFunctions from '../../apiFunctions';
 import loadingSrc from '../Decorative/loading_icon.gif';
+import dbFunctions from '../../../dbFunctions';
 
 // Components
 import StyledContainer from '../../Container';
@@ -43,7 +44,7 @@ const LoadingContainer = styled.div`
 `;
 
 function DogPage({ className }) {
-  const [isSaved] = useState(true);
+  const [isSaved, setIsSaved] = useState(false);
   const [dogData, setDogData] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
   const { dogName } = useParams();
@@ -62,6 +63,19 @@ function DogPage({ className }) {
     }
   }, [dogData]);
 
+  useEffect(() => {
+    dbFunctions.getDogs(1)
+      .then((response) => {
+        for (let i = 0; i < response.length; i++) {
+          if (response[i].dog_name === dogName) {
+            setIsSaved(true);
+            break;
+          }
+        }
+      })
+      .catch((err) => console.log(`error: ${err}`));
+  }, []);
+
   return (
     <div className={className}>
       {isLoaded
@@ -69,7 +83,11 @@ function DogPage({ className }) {
           <div>
             <StyledSelectLine isSaved={isSaved} />
             <StyledUpperContainer noPadding>
-              <Container1 isSaved={isSaved} data={dogData.briefData} />
+              <Container1
+                isSaved={isSaved}
+                data={dogData.briefData}
+                clickHandler={() => setIsSaved(true)}
+              />
               <Container2 imgSrc={dogData.expandedData.image} />
             </StyledUpperContainer>
             <StyledDecoLine />

@@ -6,10 +6,12 @@ import PropTypes from 'prop-types';
 import StyledDetails from './Details';
 import StyledPawImg from './PawImg';
 
-function Container1({ className, isSaved, data }) {
+function Container1({
+  className, isSaved, data, clickHandler,
+}) {
   return (
     <div className={className}>
-      <StyledDetails isSaved={isSaved} data={data} />
+      <StyledDetails isSaved={isSaved} data={data} clickHandler={clickHandler} />
       <StyledPawImg />
     </div>
   );
@@ -37,6 +39,7 @@ Container1.propTypes = {
     reference_image_id: PropTypes.string,
     temperament: PropTypes.string.isRequired,
   }).isRequired,
+  clickHandler: PropTypes.func.isRequired,
 };
 
 export default StyledContainer1;
