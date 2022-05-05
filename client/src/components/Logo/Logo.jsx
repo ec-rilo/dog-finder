@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 // Assets
 import StyledBoneIcon from './BoneIcon';
@@ -11,10 +12,10 @@ const StyledParagraph = styled.p`
 
 function Logo({ className }) {
   return (
-    <div className={className}>
+    <Link to="/" className={className} style={{ textDecoration: 'none' }}>
       <StyledParagraph>DogFinder</StyledParagraph>
       <StyledBoneIcon size="small" color="var(--clr-white)" />
-    </div>
+    </Link>
   );
 }
 
