@@ -8,6 +8,7 @@ import StyledNavBar from './NavBar/NavBar';
 import StyledHomePage from './Pages/HomePage/HomePage';
 import StyledFooter from './Footer/Footer';
 import StyledDogPage from './Pages/DogPage/DogPage';
+import StyledMyDogsPage from './Pages/MyDogsPage/MyDogs';
 
 function App({ className }) {
   return (
@@ -19,6 +20,7 @@ function App({ className }) {
           <Route path="breeds" element={<StyledDogPage />}>
             <Route path=":dogName" element={<StyledDogPage />} />
           </Route>
+          <Route path="/my_dogs" element={<StyledMyDogsPage />} />
           <Route
             path="*"
             element={(
