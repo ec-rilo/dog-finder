@@ -7,6 +7,7 @@ import axios from 'axios';
 // Assets
 import apiFunctions from '../../apiFunctions';
 import dogIds from '../../dogIds';
+import loadingSrc from '../Decorative/loading_icon.gif';
 
 // Components
 import StyledContainer from '../../Container';
@@ -36,15 +37,28 @@ const StyledLowerContainer = styled(StyledContainer)`
   min-height: 35vh;
 `;
 
+const LoadingContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
+
 function DogPage({ className }) {
   const [isSaved] = useState(true);
   const [dogData, setDogData] = useState({});
+  const [isLoaded, setIsLoaded] = useState(false);
   const { dogName } = useParams();
 
   useEffect(() => {
     apiFunctions.getDogBreeds(dogName)
       .then((response) => {
         const data = response[0];
+        delete data.height;
+        delete data.bred_for;
+        delete data.id;
+        delete data.life_span;
+        delete data.weight;
         dogData.briefData = data;
         setDogData(dogData);
 
@@ -54,23 +68,55 @@ function DogPage({ className }) {
       })
       .then((response) => {
         const { data } = response;
+
         dogData.expandedData = data;
         setDogData(dogData);
+        const id = dogData.briefData.reference_image_id;
+        if (id !== undefined) {
+          return axios.get(`https://api.thedogapi.com/v1/images/${id}`);
+        }
+        const dogDataCopy = { ...dogData };
+        setDogData(dogDataCopy);
+        return '';
+      })
+      .then((response) => {
+        if (response) {
+          const dogDataCopy = { ...dogData };
+          dogDataCopy.expandedData.image = response.data.url;
+          setDogData(dogDataCopy);
+        }
       })
       .catch((err) => console.error(err));
   }, [dogName]);
 
+  useEffect(() => {
+    if (dogData.expandedData && dogData.briefData) {
+      console.log(dogData);
+      setIsLoaded(true);
+    }
+  }, [dogData]);
+
   return (
     <div className={className}>
-      <StyledSelectLine isSaved={isSaved} />
-      <StyledUpperContainer noPadding>
-        <Container1 isSaved={isSaved} />
-        <Container2 />
-      </StyledUpperContainer>
-      <StyledDecoLine />
-      <StyledLowerContainer noWidth>
-        <StyledDescriptionBox />
-      </StyledLowerContainer>
+      {isLoaded
+        ? (
+          <div>
+            <StyledSelectLine isSaved={isSaved} />
+            <StyledUpperContainer noPadding>
+              <Container1 isSaved={isSaved} data={dogData.briefData} />
+              <Container2 imgSrc={dogData.expandedData.image} />
+            </StyledUpperContainer>
+            <StyledDecoLine />
+            <StyledLowerContainer noWidth>
+              <StyledDescriptionBox text={dogData.expandedData.description} />
+            </StyledLowerContainer>
+          </div>
+        )
+        : (
+          <LoadingContainer>
+            <img src={loadingSrc} alt="...loading" />
+          </LoadingContainer>
+        )}
     </div>
   );
 }

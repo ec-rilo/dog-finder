@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 // Components
 import StyledHeartIcon from '../Decorative/Heart';
 import StyledCategory from './Category';
+import StyledRevolvingText from './RevolvingText';
 
 const StyledTitle = styled.h1`
   display: inline-block;
@@ -18,19 +19,15 @@ const StyledTitleContainer = styled.div`
   gap: 25px;
 `;
 
-const StyledSubTitle = styled.p`
-  font-size: 1.3rem;
-`;
-
-function Details({ className, isSaved }) {
+function Details({ className, isSaved, data }) {
   return (
     <div className={className}>
       <StyledTitleContainer>
-        <StyledTitle>German Shepherd Dog</StyledTitle>
+        <StyledTitle>{data.name}</StyledTitle>
         <StyledHeartIcon isSaved={isSaved} />
       </StyledTitleContainer>
-      <StyledSubTitle>Intelligent-Kind</StyledSubTitle>
-      <StyledCategory text="Sporting Group" />
+      <StyledRevolvingText textArr={data.temperament.split(', ')} />
+      <StyledCategory text={`${data.breed_group} Group`} />
     </div>
   );
 }
@@ -44,6 +41,12 @@ const StyledDetails = styled(Details)`
 Details.propTypes = {
   className: PropTypes.string.isRequired,
   isSaved: PropTypes.bool.isRequired,
+  data: PropTypes.shape({
+    breed_group: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    reference_image_id: PropTypes.string,
+    temperament: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default StyledDetails;
