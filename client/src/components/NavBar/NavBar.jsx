@@ -39,6 +39,10 @@ const StyledOption = styled.p`
 const StyledCenteredDiv = styled.div`
   display: flex;
   align-items: center;
+
+  @media (max-width: 800px) {
+    display: none;
+  }
 `;
 
 const StyledUser = styled.p`
