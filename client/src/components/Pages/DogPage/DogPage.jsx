@@ -91,7 +91,6 @@ function DogPage({ className }) {
 
   useEffect(() => {
     if (dogData.expandedData && dogData.briefData) {
-      console.log(dogData);
       setIsLoaded(true);
     }
   }, [dogData]);
