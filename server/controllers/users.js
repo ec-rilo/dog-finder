@@ -21,4 +21,13 @@ module.exports = {
       .catch((err) => res.status(400).send(err));
   },
 
+  removeDog: (req, res) => {
+    const { userId } = req.query;
+    const { dogName } = req.query;
+
+    models.users.removeSingleDog(userId, dogName)
+      .then((data) => res.send(data))
+      .catch((err) => res.status(400).send(err));
+  },
+
 };

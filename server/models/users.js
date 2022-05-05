@@ -35,4 +35,12 @@ module.exports = {
       .catch((err) => reject(err));
   }),
 
+  removeSingleDog: (userId, dogName) => new Promise((resolve, reject) => {
+    const query = `DELETE FROM saved_dogs WHERE user_id = ${userId} AND dog_name = '${dogName}'`;
+
+    pool.query(query)
+      .then((data) => resolve(data.rows))
+      .catch((err) => reject(err));
+  }),
+
 };
