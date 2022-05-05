@@ -52,6 +52,10 @@ const StyledMenuBtn = styled(MenuBtn)`
   font-size: 1rem;
   font-family: var(--fnt-bold);
   cursor: pointer;
+
+  @media (min-width: 800px) {
+    display: none;
+  }
 `;
 
 MenuBtn.propTypes = {
