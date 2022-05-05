@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 
 // Assets
 import apiFunctions from '../../apiFunctions';
-import dogIds from '../../dogIds';
 import loadingSrc from '../Decorative/loading_icon.gif';
 
 // Components
@@ -51,40 +49,9 @@ function DogPage({ className }) {
   const { dogName } = useParams();
 
   useEffect(() => {
-    apiFunctions.getDogBreeds(dogName)
+    apiFunctions.getSingleDog(dogName)
       .then((response) => {
-        const data = response[0];
-        delete data.height;
-        delete data.bred_for;
-        delete data.id;
-        delete data.life_span;
-        delete data.weight;
-        dogData.briefData = data;
-        setDogData(dogData);
-
-        const id = dogIds[dogName];
-
-        return axios.get(`https://api-dog-breeds.herokuapp.com/api/dog/${id}`);
-      })
-      .then((response) => {
-        const { data } = response;
-
-        dogData.expandedData = data;
-        setDogData(dogData);
-        const id = dogData.briefData.reference_image_id;
-        if (id !== undefined) {
-          return axios.get(`https://api.thedogapi.com/v1/images/${id}`);
-        }
-        const dogDataCopy = { ...dogData };
-        setDogData(dogDataCopy);
-        return '';
-      })
-      .then((response) => {
-        if (response) {
-          const dogDataCopy = { ...dogData };
-          dogDataCopy.expandedData.image = response.data.url;
-          setDogData(dogDataCopy);
-        }
+        setDogData(response);
       })
       .catch((err) => console.error(err));
   }, [dogName]);
