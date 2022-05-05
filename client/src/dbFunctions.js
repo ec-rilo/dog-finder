@@ -14,6 +14,12 @@ const dbFunctions = {
       .catch((err) => reject(err));
   }),
 
+  removeDog: (id, dogName) => new Promise((resolve, reject) => {
+    axios.delete(`http://localhost:3000/user/dogs?userId=${id}&dogName=${dogName}`)
+      .then((response) => resolve(response))
+      .catch((err) => reject(err));
+  }),
+
 };
 
 export default dbFunctions;
