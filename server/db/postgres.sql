@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 CREATE TABLE IF NOT EXISTS saved_dogs (
-  dog_name VARCHAR(100) NOT NULL,
+  dog_name VARCHAR(100) UNIQUE NOT NULL,
   user_id INT,
   CONSTRAINT fk_user
     FOREIGN KEY(user_id)

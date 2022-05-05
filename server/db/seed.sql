@@ -1,7 +1,1 @@
-CREATE ROLE ecarrillo046;
-
-ALTER ROLE ecarrillo046 WITH LOGIN;
-
-ALTER USER ecarrillo046 CREATEDB;
-
-ALTER USER ecarrillo046 WITH PASSWORD 'password';
+INSERT INTO users (name) VALUES ('Edgar');
