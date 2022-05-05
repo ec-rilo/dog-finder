@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 /* ----------------- HamBtn ----------------- */
 
@@ -36,10 +37,10 @@ HamBtn.propTypes = {
 
 function MenuBtn({ className }) {
   return (
-    <div className={className}>
+    <Link className={className} to="/my_dogs">
       <p style={{ textTransform: 'uppercase' }}>MENU</p>
       <StyledHamBtn />
-    </div>
+    </Link>
   );
 }
 
@@ -52,6 +53,9 @@ const StyledMenuBtn = styled(MenuBtn)`
   font-size: 1rem;
   font-family: var(--fnt-bold);
   cursor: pointer;
+
+  color: var(--clr-white);
+  text-decoration: none;
 
   @media (min-width: 800px) {
     display: none;
