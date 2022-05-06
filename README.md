@@ -12,7 +12,8 @@
     <img src="https://i.imgur.com/6lHHZhr.png">
 </div>
 
-<h4 align="center">Searching through dog breeds and saving the ones you want to adopt has never been easier. </h4>
+<h4 align="center">A Dog application that allows users to view and save dog breeds for future reference or to research breeds.</h4>
+<p align="center"> <a href="http://52.53.224.109:3000//">View Live >></a></p>
 
 ## Features
 **Dog Search**
